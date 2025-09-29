@@ -1,6 +1,7 @@
+import uuid
 from domain.models import User
 from application.use_case.models.base_response import BaseResponse
-from application.use_case.models.user import CreateUser, UserResponse
+from application.use_case.models.user import CreateUser, ListUserResponse, UserResponse
 from application.use_case.user_service import UserService as DefaultUserService
 from application.persistence.user_repository import UserRepository
 from logging import Logger
@@ -51,6 +52,37 @@ class UserService(DefaultUserService):
         response = UserResponse(status=True, id=db_user.id, email=db_user.email, username=db_user.username)
         response._status_code = 201
         return response
+        
+    def list(self) -> BaseResponse:
+        self._logger.info("Listing users")
+        users = self._user_repository.list()
+        user_responses = []
+        for user in users:
+            user_responses.append(UserResponse(
+                status=True,
+                id=user.id,
+                email=user.email,
+                username=user.username
+            ))
+        response = ListUserResponse(status=True, message="Users listed successfully", users=user_responses)
+        response.users = user_responses
+        response._status_code = 200
+        return response
+    
+    def authenticate(self, email, password):
+        user = self._user_repository.get_by_email(email=email)
+        if not user:
+            response = BaseResponse(status=False, message="Invalid email or password")
+            response._status_code = 401
+            return response
+        
+        if not HashingService().verify_password(password, user.hash_salt, user.password_hash):
+            response = BaseResponse(status=False, message="Invalid email or password")
+            response._status_code = 401
+            return response
+        
+        return BaseResponse(status=True, message="User authenticated successfully")
+        
         
         
         

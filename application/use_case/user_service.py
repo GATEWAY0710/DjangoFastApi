@@ -24,3 +24,7 @@ class UserService(metaclass=ABCMeta):
     def list(self) -> BaseResponse:
         """List user"""
         raise NotImplementedError
+    
+    def authenticate(self, email: str, password: str) -> BaseResponse:
+        """Authenticate user"""
+        raise NotImplementedError
