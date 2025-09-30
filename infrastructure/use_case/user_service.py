@@ -69,6 +69,16 @@ class UserService(DefaultUserService):
         response._status_code = 200
         return response
     
+    def get_by_email(self, email) -> BaseResponse:
+        user = self._user_repository.get_by_email(email=email)
+        return UserResponse(
+            status=True,
+            message="User fetched successfully",
+            id=user.id,
+            email=user.email,
+            username=user.username
+        ) if user else BaseResponse(status=False, message="User not found")
+    
     def authenticate(self, email, password):
         user = self._user_repository.get_by_email(email=email)
         if not user:
@@ -76,7 +86,7 @@ class UserService(DefaultUserService):
             response._status_code = 401
             return response
         
-        if not HashingService().verify_password(password, user.hash_salt, user.password_hash):
+        if not HashingService().validate_password(password, user.password_hash, user.hash_salt):
             response = BaseResponse(status=False, message="Invalid email or password")
             response._status_code = 401
             return response

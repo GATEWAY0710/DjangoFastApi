@@ -1,13 +1,9 @@
-from datetime import datetime, timedelta, timezone
-from typing import Union
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse
-from fastapi.security import OAuth2PasswordBearer
-import jwt
 from api.controllers.user_controller import router as user_router
+from api.controllers.auth_controller import router as auth_router
 from dotenv import load_dotenv
-from passlib.context import CryptContext
 
 load_dotenv()
 
@@ -33,5 +29,5 @@ app.add_middleware(
 import logging
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
-
+app.include_router(auth_router, prefix="/auth", tags=["Authentication"])
 app.include_router(user_router, prefix="/users", tags=["Users"])
