@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn JavaScript Fetch API</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: #f8f9fa;
+    }
+    .hero {
+      background: linear-gradient(135deg, #007bff, #6610f2);
+      color: white;
+      padding: 100px 0;
+      text-align: center;
+    }
+    .hero h1 {
+      font-weight: 700;
+      font-size: 3rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+    .feature-card {
+      border: none;
+      border-radius: 15px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    footer {
+      background: #212529;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">JS Fetch API Class</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+          <li class="nav-item"><a class="nav-link" href="#topics">Topics</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>Master JavaScript Fetch API</h1>
+      <p>Learn how to connect your frontend to real-world APIs with simple and powerful examples.</p>
+      <a href="login.html" class="btn btn-light btn-lg me-2">Login</a>
+      <a href="create.html" class="btn btn-outline-light btn-lg">Create User</a>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="py-5">
+    <div class="container text-center">
+      <h2 class="fw-bold mb-4">Why Learn Fetch API?</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card feature-card p-4">
+            <div class="card-body">
+              <h5 class="card-title">🌐 Connect to APIs</h5>
+              <p class="card-text">Fetch data from REST APIs and display dynamic information in your web apps.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card feature-card p-4">
+            <div class="card-body">
+              <h5 class="card-title">⚙️ Handle Requests</h5>
+              <p class="card-text">Learn GET, POST, PUT, and DELETE operations using Fetch in real scenarios.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card feature-card p-4">
+            <div class="card-body">
+              <h5 class="card-title">💡 Build Real Apps</h5>
+              <p class="card-text">Combine Bootstrap and Fetch API to create modern, data-driven applications.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Topics Section -->
+  <section id="topics" class="py-5 bg-light">
+    <div class="container text-center">
+      <h2 class="fw-bold mb-4">Lesson Topics</h2>
+      <div class="row g-4">
+        <div class="col-md-3">
+          <div class="card h-100 feature-card">
+            <div class="card-body">
+              <h5 class="card-title">GET Request</h5>
+              <p class="card-text">Retrieve data from a server and display it dynamically.</p>
+              <a href="get-demo.html" class="btn btn-primary">Open Demo</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card h-100 feature-card">
+            <div class="card-body">
+              <h5 class="card-title">POST Request</h5>
+              <p class="card-text">Send data to an API and handle responses gracefully.</p>
+              <a href="post-demo.html" class="btn btn-primary">Open Demo</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card h-100 feature-card">
+            <div class="card-body">
+              <h5 class="card-title">PUT Request</h5>
+              <p class="card-text">Update existing data using Fetch API’s PUT method.</p>
+              <a href="put-demo.html" class="btn btn-primary">Open Demo</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card h-100 feature-card">
+            <div class="card-body">
+              <h5 class="card-title">DELETE Request</h5>
+              <p class="card-text">Remove data from an API safely and efficiently.</p>
+              <a href="delete-demo.html" class="btn btn-primary">Open Demo</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container">
+      <p class="mb-0">Created for JavaScript Students | © 2025</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

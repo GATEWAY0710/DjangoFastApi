@@ -8,10 +8,10 @@ class CreateUser(BaseModel):
     email: EmailStr
     username: Optional[str]
     password: str
-    confrim_password: str
+    confirm_password: str
     
     def validate_password(self):
-        return self.password == self.confrim_password
+        return self.password == self.confirm_password
     
 class UserResponse(BaseResponse):
     id: UUID4

@@ -9,6 +9,13 @@ load_dotenv()
 
 app = FastAPI()
 
+@app.middleware("http")
+async def log_requests(request: Request, call_next):
+    print(f"Request: {request.method} {request.url} {await request.body()}")
+    response = await call_next(request)
+    print(f"Response status: {response.status_code}")
+    return response
+
 @app.exception_handler(HTTPException)
 def exception_handler(request: Request, exc: HTTPException):
     return JSONResponse(

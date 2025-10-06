@@ -1,19 +1,23 @@
+from pydantic import BaseModel
 from application.use_case.models.auth import TokenResponse
 from fastapi import APIRouter, Depends, HTTPException, status, Body
 from application.use_case.models.user import UserResponse
 from infrastructure.dependency import container
 from api.token import create_token
 
+class TokenRequest(BaseModel):
+    email: str
+    password: str
 
 router = APIRouter()
 @router.post("/token", response_model=TokenResponse)
-def token(email: str = Body(), password: str = Body()):
+def token(tokenRequest: TokenRequest = Body(...)):
     user_service = container.user_service()
-    response = user_service.authenticate(email, password)
+    response = user_service.authenticate(tokenRequest.email, tokenRequest.password)
     if not response.status:
         raise HTTPException(status_code=response._status_code, detail=response.message)
     
-    response: UserResponse = container.user_service().get_by_email(email)
+    response: UserResponse = container.user_service().get_by_email(tokenRequest.email)
     
     if not response.status:
         raise HTTPException(status_code=response._status_code, detail=response.message)
@@ -26,7 +30,7 @@ def token(email: str = Body(), password: str = Body()):
         "sub": email,
         "user_id": str(user_id),
         "username": username,
-        "roles" : ["user"]
+        "roles" : ["admin"]
     }
     
     access_token, refresh_token, expire = create_token(data, expires_delta=None)
@@ -39,3 +43,4 @@ def token(email: str = Body(), password: str = Body()):
         token_type="bearer",
         expires_in=int(expire.timestamp())
     )
+    
